@@ -1,0 +1,10 @@
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . index.php [L]
+
+#Header set Access-Control-Allow-Origin "*"
+
+# Options ~index
+
+php_value date.timezone 'America/Sao_Paulo'
