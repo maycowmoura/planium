@@ -12,18 +12,31 @@ class BestPrice {
     $this->pricesDb = (new JsonDB('prices'))->selectAll();
   }
 
+  /**
+   * Seta o id do plano
+   */
   public function setPlanId(int $planId) {
     $this->planId = $planId;
   }
 
+  /**
+   * Seta a faixa de idade
+   * Não é a idade, sim a faixa, como "faixa1" ou "faixa2"
+   */
   public function setAgeRange(string $ageRange) {
     $this->ageRange = $ageRange;
   }
 
+  /**
+   * Seta o total de pessoas que vão aderir a esse plano neste orçamento
+   */
   public function setTotalLifes(int $totalLifes) {
     $this->totalLifes = $totalLifes;
   }
 
+  /**
+   * Obtém o melhor preço baseado na idade e no total de vidas
+   */
   public function getPrice() {
     $avaliablePlans = array_filter($this->pricesDb, fn ($item) => $item['codigo'] == $this->planId);
     $avaliablePlans = array_values($avaliablePlans); // reseta o index do array filtrado

@@ -1,6 +1,9 @@
 <?php
 
 class AgeRanges {
+  /**
+   * Obtem a faixa de idade baseado na idade inserida
+   */
   public static function getRange(int $age): string {
     if ($age >= 0 && $age <= 17) {
       return 'faixa1';
