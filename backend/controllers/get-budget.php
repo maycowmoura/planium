@@ -4,7 +4,26 @@ require_once __DIR__ . '/../models/JsonDB.php';
 require_once __DIR__ . '/../models/AgeRanges.php';
 require_once __DIR__ . '/../models/BestPrice.php';
 
-$lifesByPlan = array_reduce(POST, function($plans, $person){
+use Respect\Validation\Validator as v;
+
+/**
+ * Validação dos dados
+ */
+try {
+  v::ArrayType()->setName('Dados do orçamento')->check(POST);
+
+  foreach (POST as $item) {
+    v::key('name', v::stringType()->regex('/^[A-zÀ-ú\s]+$/')->length(3, 60))
+      ->key('age', v::intVal()->lessThan(120)->positive())
+      ->key('planId', v::intVal()->positive())
+      ->check($item);
+  }
+} catch (Exception $e) {
+  error($e->getMessage());
+}
+
+
+$lifesByPlan = array_reduce(POST, function ($plans, $person) {
   $plans[$person['planId']] = ($plans[$person['planId']] ?? 0) + 1;
   return $plans;
 }, []);
