@@ -1,8 +1,11 @@
 import './style.css';
 import { BsCalendarWeek, BsPatchCheck } from 'react-icons/bs';
-import { RiArrowGoBackFill } from 'react-icons/ri';
+import { RiArrowGoBackFill, RiFileExcel2Line, RiCodeBoxLine } from 'react-icons/ri';
 
 export default function Budget({ data, setData, setActive }) {
+  const baseurl = process.env.NODE_ENV === 'production'
+    ? `/planium/backend/budgets/download/${data.budget.file}/`
+    : `http://planium/budgets/download/${data.budget.file}/`;
 
   function getPlanById(id) {
     return data.plans.filter(plan => plan.codigo === id)[0].nome;
@@ -17,7 +20,7 @@ export default function Budget({ data, setData, setActive }) {
   }
 
   function newBudget() {
-    setData(data => ({...data, budget: null}));
+    setData(data => ({ ...data, budget: null }));
     setActive('register');
   }
 
@@ -41,14 +44,28 @@ export default function Budget({ data, setData, setActive }) {
         </div>
       ))}
 
-      <div className="fs-5 fw-bold text-center mt-5">
-        Total Geral: {numberToCurrency(data.budget.total)}
+      <div className="text-center mt-5">
+        <div className="fs-5 fw-bold">
+          Total Geral
+        </div>
+        <div className="display-5">
+          {numberToCurrency(data.budget.total)}
+        </div>
       </div>
 
       <div className="text-center">
-        <button className="btn btn-info mt-5" onClick={newBudget}>
+        <div class="mt-5 d-flex gap-2 justify-content-center">
+          <a href={`${baseurl}/?type=csv`} target="_blank" class="btn btn-secondary">
+            <RiFileExcel2Line /> Baixar Proposta em Excel
+          </a>
+          <a href={`${baseurl}/?type=json`} target="_blank" class="btn btn-secondary">
+            <RiCodeBoxLine /> Baixar em JSON
+          </a>
+        </div>
+        <button className="btn btn-info mt-4" onClick={newBudget}>
           <RiArrowGoBackFill /> Novo Orçamento
         </button>
+
       </div>
     </div>
   );
