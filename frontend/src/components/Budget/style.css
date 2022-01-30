@@ -1,0 +1,22 @@
+#budget {
+ min-width: 50%;
+}
+
+#budget .person {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2em;
+  padding: 26px 0;
+  border-bottom: 1px solid #ccc;
+}
+
+#budget .person:first-of-type {
+  border-top: 1px solid #ccc;
+}
+
+#budget .person .price {
+  font-size: 22px;
+  font-weight: 700;
+  white-space: nowrap;
+}
