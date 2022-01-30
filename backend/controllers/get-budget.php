@@ -63,6 +63,10 @@ $db->update([[
 ]]);
 $db->save();
 
+$budgetFilename = 'proposta_'. time_ms();
+$budgetPath = __DIR__ . '/../budgetsDist';
+$fileContents = _json_encode($budget);
+$budget['file'] = $budgetFilename;
 
-
+file_put_contents("$budgetPath/$budgetFilename.json", $fileContents);
 die(_json_encode($budget));
