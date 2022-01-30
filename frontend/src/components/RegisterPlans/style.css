@@ -1,0 +1,23 @@
+form {
+  max-width: 500px;
+  margin: auto;
+}
+
+.person-card {
+  position: relative;
+  padding-right: 28px !important;
+  max-width: 350px;
+}
+
+.person-card button {
+  position: absolute;
+  top: 10px;
+  right: 4px;
+  cursor: pointer;
+}
+
+.get-budget {
+  position: fixed;
+  right: 1em;
+  bottom: 1em;
+}
