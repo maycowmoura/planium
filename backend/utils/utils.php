@@ -10,6 +10,10 @@ function _json_decode($string) {
   return json_decode($string, true);
 }
 
+function time_ms(){
+  return round(microtime(true) * 1000);
+}
+
 if (!getenv('DEV_MODE')) {
 
   header('content-type: application/json; charset=utf-8');
