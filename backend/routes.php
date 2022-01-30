@@ -10,6 +10,10 @@ $router->post('/budgets', function () {
   require_once __DIR__ . '/controllers/get-budget.php';
 });
 
+$router->get('/budgets/download/{filename}', function ($filename) {
+  require_once __DIR__ . '/controllers/download-budgets.php';
+});
+
 $router->set404(function () {
   echo "<h1>404</h1>";
 });
