@@ -55,18 +55,11 @@ foreach (POST as $person) {
   $budget['total'] += $price;
 }
 
-// salva o json dos beneficiarios
-$db = new JsonDB('beneficiaries');
-$db->update([[
-  'people' => $budget['people'],
-  'createdAt' => time()
-]]);
-$db->save();
-
-$budgetFilename = 'proposta_'. time_ms();
+$budgetFilename = 'proposta_' . time_ms();
 $budgetPath = __DIR__ . '/../budgetsDist';
-$fileContents = _json_encode($budget);
 $budget['file'] = $budgetFilename;
 
+$fileContents = _json_encode($budget['people']);
 file_put_contents("$budgetPath/$budgetFilename.json", $fileContents);
+
 die(_json_encode($budget));

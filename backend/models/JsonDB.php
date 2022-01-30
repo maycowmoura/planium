@@ -9,7 +9,6 @@ class JsonDB {
     $basePath = __DIR__ . '/../db';
 
     $dbFiles = [
-      'beneficiaries' => $basePath . '/beneficiaries.json',
       'plans' => $basePath . '/plans.json',
       'prices' => $basePath . '/prices.json'
     ];
