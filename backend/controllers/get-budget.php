@@ -30,7 +30,7 @@ $lifesByPlan = array_reduce(POST, function ($plans, $person) {
 
 
 $budget = [
-  'persons' => [],
+  'people' => [],
   'total' => 0
 ];
 
@@ -45,7 +45,7 @@ foreach (POST as $person) {
   $bp->setTotalLifes($lifes);
   $price = $bp->getPrice();
 
-  $budget['persons'][] = [
+  $budget['people'][] = [
     'name' => $person['name'],
     'age' => $person['age'],
     'planId' => $person['planId'],
@@ -58,7 +58,7 @@ foreach (POST as $person) {
 // salva o json dos beneficiarios
 $db = new JsonDB('beneficiaries');
 $db->update([[
-  'persons' => $budget['persons'],
+  'people' => $budget['people'],
   'createdAt' => time()
 ]]);
 $db->save();
