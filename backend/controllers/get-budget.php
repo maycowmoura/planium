@@ -63,4 +63,12 @@ $budget['file'] = $budgetFilename;
 $fileContents = _json_encode($budget['people']);
 file_put_contents("$budgetPath/$budgetFilename.json", $fileContents);
 
+/**
+ * Deleta propostas com mais de 30 dias
+ */
+$thirtyDaysAgo = time() - (30 * 24 * 60 * 60);
+foreach(glob("$budgetPath/*") as $file){
+  (filemtime($file) <= $thirtyDaysAgo) && unlink($file);
+}
+
 die(_json_encode($budget));
