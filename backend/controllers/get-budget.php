@@ -56,7 +56,8 @@ foreach (POST as $person) {
 }
 
 $budgetFilename = 'proposta_' . time_ms();
-$budgetPath = __DIR__ . '/../budgetsDist';
+$budgetPath = __DIR__ . '/../budgets-dist';
+is_dir($budgetPath) || mkdir($budgetPath);
 $budget['file'] = $budgetFilename;
 
 $fileContents = _json_encode($budget['people']);
