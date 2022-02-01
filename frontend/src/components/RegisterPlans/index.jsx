@@ -74,7 +74,7 @@ export default function RegisterPlans({ data, setData, setActive }) {
 
 
   return (
-    <div id="register">
+    <div id="register" className="px-2">
       <form ref={form} className="card p-4">
         <h3><BsFolderPlus /> Cadastrar beneficiários</h3>
 
@@ -124,9 +124,9 @@ export default function RegisterPlans({ data, setData, setActive }) {
           </button>
       </form>
 
-      <div className="d-flex justify-content-center align-items-center gap-4 flex-wrap m-3 mt-5">
+      <div className="d-flex justify-content-center align-items-center flex-wrap gap-4 w-100 my-5 pb-5 pb-md-0">
         {!!people.length && people.map((person, i) => (
-          <div className="person-card card border-info p-4" key={i}>
+          <div className="person-card card border-info p-4 w-100" key={i}>
             <h4 className="mb-4 text-capitalize">{person.name}</h4>
             <div><BsCalendarWeek /> {person.age} anos de idade</div>
             <div><BsPatchCheck /> {person.plan}</div>
